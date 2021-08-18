@@ -59,6 +59,10 @@ export default class FilterController extends Controller {
     return OPTIONS[this.type] ?? [];
   }
 
+  get q() {
+    return this.router.currentRoute.queryParams?.q;
+  }
+
   get selections() {
     let { f } = this.router.currentRoute.queryParams;
     let selections = f?.split(',').filter((value) => value.trim() !== '');
