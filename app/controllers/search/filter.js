@@ -39,6 +39,8 @@ export default class FilterController extends Controller {
   @service router;
 
   reset() {
+    // TODO: I don't know how to do this
+    // how do I reset to the defaults here?
     console.log('reset filter', this.type, this.f);
   }
 
