@@ -14,7 +14,8 @@
     reset
   </LinkTo>
 </form>
-
+{{log this.type}}
+{{log this.defaults}}
 <nav aria-label="search results">
   <LinkTo @route="search.filter" @models={{array "foo"}}>Foo</LinkTo>
   <LinkTo @route="search.filter" @models={{array "bar"}}>Bar</LinkTo>

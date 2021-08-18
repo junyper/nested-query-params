@@ -43,7 +43,7 @@ export default class FilterController extends Controller {
     // TODO: I don't know how to do this
     // how do I reset to the defaults for all types here?
     // it only resets for the current one
-    this.router.replaceWith('search.filter', {
+    this.router.replaceWith({
       queryParams: {
         ...this.router.currentRoute.queryParams, // keep q param from search
         f: DEFAULTS.f,
