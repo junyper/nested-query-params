@@ -16,7 +16,6 @@ export default class FooRoute extends Route {
 
   setupController(controller) {
     let { q } = this.paramsFor('search');
-
     controller.setup({ q });
   }
 }

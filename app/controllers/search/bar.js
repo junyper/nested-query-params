@@ -14,11 +14,13 @@ export default class SearchBarController extends Controller {
   @tracked q;
 
   setup({ q }) {
+    console.log('setup bar', q);
     this.q = q;
   }
 
   reset() {
     this.bar = QUERY_DEFAULTS.bar;
+    console.log('reset bar', this.bar);
   }
 
   get filters() {

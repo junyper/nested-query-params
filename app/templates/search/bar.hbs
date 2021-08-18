@@ -1,11 +1,29 @@
 {{page-title "Bar"}}
 
-<h1>Bar</h1>
-<h2>Query: '{{this.q}}'</h2>
-<h2>Filters: '{{this.bar}}'</h2>
+<dl>
+  <dt>
+    Query
+  </dt>
+  <dd>
+    '{{this.q}}'
+  </dd>
+  <dt>
+    Filters
+  </dt>
+  <dd>
+    '{{this.bar}}'
+  </dd>
+</dl>
 
 <fieldset>
-  <legend>Bar Filters</legend>
+  <legend>
+    Filters
+
+    <LinkTo title="clear" aria-label="clear filters" @route={{route-name}} @query={{this.queryDefaults}}>
+      ×
+    </LinkTo>
+  </legend>
+
   <FilterCheckbox
     @name="a"
     @value="a"
@@ -13,7 +31,6 @@
     @checked={{if (array-contains this.filters "a") true null}}
     @onChange={{this.handleFilterChange}}
   />
-  {{array-contains this.filters "a"}}
   <FilterCheckbox
     @name="b"
     @value="b"
@@ -21,7 +38,6 @@
     @checked={{if (array-contains this.filters "b") true null}}
     @onChange={{this.handleFilterChange}}
   />
-  {{array-contains this.filters "b"}}
 </fieldset>
 
 {{outlet}}

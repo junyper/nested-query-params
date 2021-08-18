@@ -16,7 +16,6 @@ export default class BarRoute extends Route {
 
   setupController(controller) {
     let { q } = this.paramsFor('search');
-
     controller.setup({ q });
   }
 }

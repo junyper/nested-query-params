@@ -13,11 +13,13 @@ export default class SearchFooController extends Controller {
   @tracked foo = QUERY_DEFAULTS.foo;
 
   setup({ q }) {
+    console.log('setup foo', q);
     this.q = q;
   }
 
   reset() {
     this.foo = QUERY_DEFAULTS.foo;
+    console.log('reset foo', this.foo);
   }
 
   get filters() {

@@ -1,0 +1,55 @@
+* {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+html {
+  font-size: 100%;
+  background: white;
+}
+
+nav {
+  border-bottom: 0.125rem solid lightgray;
+}
+
+nav a {
+  text-decoration: none;
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-bottom: 0.125rem solid transparent;
+}
+
+nav a.active {
+  border-bottom-color: purple;
+}
+
+dl {
+  background-color: lightyellow;
+  padding: 1rem;
+}
+
+dd, dt {
+  font-family: monospace;
+}
+
+a[title="clear"] {
+  text-decoration: none;
+  font-size: 150%;
+  vertical-align: top;
+  padding: 0;
+  line-height: 1;
+}
+
+fieldset {
+  max-width: 10rem;
+  border: none;
+  line-height: 1.5;
+}
+
+fieldset legend {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: top;
+  align-content: top;
+  width: 100%;
+}
