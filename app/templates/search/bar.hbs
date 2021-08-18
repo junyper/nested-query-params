@@ -1,0 +1,27 @@
+{{page-title "Bar"}}
+
+<h1>Bar</h1>
+<h2>Query: '{{this.q}}'</h2>
+<h2>Filters: '{{this.bar}}'</h2>
+
+<fieldset>
+  <legend>Bar Filters</legend>
+  <FilterCheckbox
+    @name="a"
+    @value="a"
+    @label="Filter A"
+    @checked={{if (array-contains this.filters "a") true null}}
+    @onChange={{this.handleFilterChange}}
+  />
+  {{array-contains this.filters "a"}}
+  <FilterCheckbox
+    @name="b"
+    @value="b"
+    @label="Filter B"
+    @checked={{if (array-contains this.filters "b") true null}}
+    @onChange={{this.handleFilterChange}}
+  />
+  {{array-contains this.filters "b"}}
+</fieldset>
+
+{{outlet}}

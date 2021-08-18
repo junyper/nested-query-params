@@ -1,0 +1,16 @@
+<div>
+  {{#let (unique-id) as |id|}}
+    <label for={{id}}>
+      {{@label}}
+    </label>
+    <input
+      {{did-insert this.inputRef}}
+      id={{id}}
+      placeholder={{@placeholder}}
+      type="text"
+      value={{@value}}
+      {{on "input" this.handleInput}}
+      {{on "keyup" this.handleKeyup}}
+    />
+  {{/let}}
+</div>

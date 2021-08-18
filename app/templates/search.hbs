@@ -1,0 +1,13 @@
+{{page-title "Search"}}
+
+<SearchInput
+  @placeholder="Search"
+  @label="Search"
+  @value={{this.q}}
+  @onChange={{this.handleSearch}}
+/>
+
+<LinkTo @route="search.foo">Foo</LinkTo>
+<LinkTo @route="search.bar">Bar</LinkTo>
+
+{{outlet}}

@@ -1,0 +1,15 @@
+<div>
+  {{#let (unique-id) as |id|}}
+    <label for={{id}}>
+      <input
+        id={{id}}
+        type="checkbox"
+        checked={{@checked}}
+        value={{@value}}
+        name={{@name}}
+        {{on "change" @onChange}}
+      />
+      {{@label}}
+    </label>
+  {{/let}}
+</div>
