@@ -1,9 +1,10 @@
 import Controller from '@ember/controller';
 import { action } from '@ember/object';
-import { tracked } from '@glimmer/tracking';
+import { inject as service } from '@ember/service';
 
 const DEFAULTS = {
   f: '',
+  type: 'foo',
 };
 
 const OPTIONS = {
@@ -32,20 +33,17 @@ const OPTIONS = {
 export default class FilterController extends Controller {
   queryParams = ['f'];
   defaults = DEFAULTS;
+  f = DEFAULTS.f;
+  name = 'f';
 
-  @tracked f = DEFAULTS.f;
-  @tracked q;
-  @tracked type;
-
-  setup({ q, type }) {
-    console.log('setup filter', q, type);
-    this.q = q;
-    this.type = type;
-  }
+  @service router;
 
   reset() {
-    this.f = DEFAULTS.f;
     console.log('reset filter', this.type, this.f);
+  }
+
+  get type() {
+    return this.router.currentRoute.params.type ?? DEFAULTS.type;
   }
 
   get options() {
@@ -53,25 +51,27 @@ export default class FilterController extends Controller {
   }
 
   get selections() {
-    let selections = this.f?.split(',').filter((value) => value.trim() !== '');
+    let { f } = this.router.currentRoute.queryParams;
+    let selections = f?.split(',').filter((value) => value.trim() !== '');
     return selections ?? [];
-  }
-
-  set selections(values = []) {
-    let selections = values.filter((value) => value.trim() !== '');
-    this.f = selections.join(',');
   }
 
   @action
   handleFilterChange(value) {
     let selections = this.selections;
-
     if (selections.includes(value)) {
       selections = selections.filter((v) => v !== value);
     } else {
       selections.push(value);
     }
 
-    this.selections = selections;
+    let f = selections.join(',');
+
+    this.router.replaceWith(this.router.currentRouteName, this.type, {
+      queryParams: {
+        ...this.router.currentRoute.queryParams, // keep q param from search
+        f,
+      },
+    });
   }
 }

@@ -1,29 +1,29 @@
 import Controller from '@ember/controller';
 import { action } from '@ember/object';
-import { tracked } from '@glimmer/tracking';
+import { inject as service } from '@ember/service';
 
 const DEFAULTS = {
   q: '',
+  type: 'foo',
 };
 
 export default class SearchController extends Controller {
   queryParams = ['q'];
+  q = DEFAULTS.q;
   defaults = DEFAULTS;
 
-  @tracked q = DEFAULTS.q;
+  @service router;
 
-  setup({ q }) {
-    console.log('setup search', q);
-    this.q = q;
-  }
-
-  reset() {
-    this.q = '';
-    console.log('reset search', this.q);
+  get type() {
+    return this.router.currentRoute.params.type ?? DEFAULTS.type;
   }
 
   @action
   handleSearch(q) {
-    this.q = q.trim();
+    this.router.replaceWith(this.router.currentRouteName, this.type, {
+      queryParams: {
+        q,
+      },
+    });
   }
 }

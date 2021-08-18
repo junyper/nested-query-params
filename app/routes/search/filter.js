@@ -13,10 +13,4 @@ export default class FilterRoute extends Route {
       controller.reset();
     }
   }
-
-  setupController(controller) {
-    let { q } = this.paramsFor('search');
-    let { type } = this.paramsFor(this.routeName);
-    controller.setup({ q, type });
-  }
 }
