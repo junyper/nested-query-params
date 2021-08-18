@@ -1,12 +1,12 @@
-{{page-title "Foo"}}
+{{page-title this.filter}}
 
-<DebugFilters @query={{this.q}} @filters={{this.foo}} />
+<DebugFilters @query={{this.q}} @filters={{this.f}} />
 
 <FilterFieldset
   @defaults={{this.defaults}}
   @options={{this.options}}
   @selections={{this.selections}}
-  @name={{this.name}}
+  @name="f"
   @onChange={{this.handleFilterChange}}
 />
 

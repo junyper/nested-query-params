@@ -9,9 +9,9 @@
   <LinkTo @route="search" @query={{this.defaults}}>reset</LinkTo>
 </form>
 
-<nav aria-label="search result categories">
-  <LinkTo @route="search.foo">Foo</LinkTo>
-  <LinkTo @route="search.bar">Bar</LinkTo>
+<nav aria-label="search results">
+  <LinkTo @route="search.filter" @models={{array "foo"}}>Foo</LinkTo>
+  <LinkTo @route="search.filter" @models={{array "bar"}}>Bar</LinkTo>
 </nav>
 
 {{outlet}}
