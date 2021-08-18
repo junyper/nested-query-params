@@ -1,6 +1,7 @@
 import Controller from '@ember/controller';
 import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
+import { tracked } from '@glimmer/tracking';
 
 const DEFAULTS = {
   f: '',
@@ -40,8 +41,14 @@ export default class FilterController extends Controller {
 
   reset() {
     // TODO: I don't know how to do this
-    // how do I reset to the defaults here?
-    console.log('reset filter', this.type, this.f);
+    // how do I reset to the defaults for all types here?
+    // it only resets for the current one
+    this.router.replaceWith('search.filter', {
+      queryParams: {
+        ...this.router.currentRoute.queryParams, // keep q param from search
+        f: DEFAULTS.f,
+      },
+    });
   }
 
   get type() {
