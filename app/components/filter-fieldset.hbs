@@ -1,0 +1,23 @@
+<fieldset>
+  <legend>
+    Filters
+
+    <LinkTo
+      title="clear"
+      aria-label="clear filters"
+      @route={{route-name}}
+      @query={{@defaults}}
+    >
+      ×
+    </LinkTo>
+  </legend>
+  {{#each @options as |option|}}
+    <FilterCheckbox
+      @name={{@name}}
+      @value={{option.value}}
+      @label={{option.label}}
+      @checked={{if (array-contains @selections option.value) true null}}
+      @onChange={{fn @onChange option.value}}
+    />
+  {{/each}}
+</fieldset>

@@ -1,44 +1,13 @@
 {{page-title "Foo"}}
 
-<dl>
-  <dt>
-    Query
-  </dt>
-  <dd>
-    '{{this.q}}'
-  </dd>
-  <dt>
-    Filters
-  </dt>
-  <dd>
-    '{{this.foo}}'
-  </dd>
-</dl>
+<DebugFilters @query={{this.q}} @filters={{this.foo}} />
 
-<fieldset>
-  <legend>
-    Filters
-
-    <LinkTo title="clear" aria-label="clear filters" @route={{route-name}} @query={{this.queryDefaults}}>
-      ×
-    </LinkTo>
-  </legend>
-
-  <FilterCheckbox
-    @name="c"
-    @value="c"
-    @label="Filter C"
-    @checked={{if (array-contains this.filters "c") true null}}
-    @onChange={{this.handleFilterChange}}
-  />
-
-  <FilterCheckbox
-    @name="d"
-    @value="d"
-    @label="Filter D"
-    @checked={{if (array-contains this.filters "d") true null}}
-    @onChange={{this.handleFilterChange}}
-  />
-</fieldset>
+<FilterFieldset
+  @defaults={{this.defaults}}
+  @options={{this.options}}
+  @selections={{this.selections}}
+  @name={{this.name}}
+  @onChange={{this.handleFilterChange}}
+/>
 
 {{outlet}}

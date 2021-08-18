@@ -2,15 +2,28 @@ import Controller from '@ember/controller';
 import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 
-const QUERY_DEFAULTS = {
+const DEFAULTS = {
   foo: '',
 };
 
-export default class SearchFooController extends Controller {
-  queryParams = ['foo'];
-  queryDefaults = QUERY_DEFAULTS;
+const OPTIONS = [
+  {
+    value: 'a',
+    label: 'Filter A',
+  },
+  {
+    value: 'b',
+    label: 'Filter B',
+  },
+];
 
-  @tracked foo = QUERY_DEFAULTS.foo;
+export default class SearchFooController extends Controller {
+  name = 'foo';
+  queryParams = ['foo'];
+  defaults = DEFAULTS;
+  options = OPTIONS;
+
+  @tracked foo = DEFAULTS.foo;
 
   setup({ q }) {
     console.log('setup foo', q);
@@ -18,31 +31,32 @@ export default class SearchFooController extends Controller {
   }
 
   reset() {
-    this.foo = QUERY_DEFAULTS.foo;
+    this.foo = DEFAULTS.foo;
     console.log('reset foo', this.foo);
   }
 
-  get filters() {
-    let filters = this.foo?.split(',').filter((value) => value.trim() !== '');
-    return filters ?? [];
+  get selections() {
+    let selections = this.foo
+      ?.split(',')
+      .filter((value) => value.trim() !== '');
+    return selections ?? [];
   }
 
-  set filters(values = []) {
-    let filters = values.filter((value) => value.trim() !== '');
-    this.foo = filters.join(',');
+  set selections(values = []) {
+    let selections = values.filter((value) => value.trim() !== '');
+    this.foo = selections.join(',');
   }
 
   @action
-  handleFilterChange(event) {
-    let value = event.target.value;
-    let filters = this.filters;
+  handleFilterChange(value) {
+    let selections = this.selections;
 
-    if (filters.includes(value)) {
-      filters = filters.filter((v) => v !== value);
+    if (selections.includes(value)) {
+      selections = selections.filter((v) => v !== value);
     } else {
-      filters.push(value);
+      selections.push(value);
     }
 
-    this.filters = filters;
+    this.selections = selections;
   }
 }

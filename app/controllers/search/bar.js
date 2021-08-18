@@ -2,15 +2,27 @@ import Controller from '@ember/controller';
 import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 
-const QUERY_DEFAULTS = {
+const DEFAULTS = {
   bar: '',
 };
 
+const OPTIONS = [
+  {
+    value: 'c',
+    label: 'Filter C',
+  },
+  {
+    value: 'd',
+    label: 'Filter D',
+  },
+];
 export default class SearchBarController extends Controller {
+  name = 'bar';
   queryParams = ['bar'];
-  queryDefaults = QUERY_DEFAULTS;
+  defaults = DEFAULTS;
+  options = OPTIONS;
 
-  @tracked bar = QUERY_DEFAULTS.bar;
+  @tracked bar = DEFAULTS.bar;
   @tracked q;
 
   setup({ q }) {
@@ -19,31 +31,32 @@ export default class SearchBarController extends Controller {
   }
 
   reset() {
-    this.bar = QUERY_DEFAULTS.bar;
+    this.bar = DEFAULTS.bar;
     console.log('reset bar', this.bar);
   }
 
-  get filters() {
-    let filters = this.bar?.split(',').filter((value) => value.trim() !== '');
-    return filters ?? [];
+  get selections() {
+    let selections = this.bar
+      ?.split(',')
+      .filter((value) => value.trim() !== '');
+    return selections ?? [];
   }
 
-  set filters(values = []) {
-    let filters = values.filter((value) => value.trim() !== '');
-    this.bar = filters.join(',');
+  set selections(values = []) {
+    let selections = values.filter((value) => value.trim() !== '');
+    this.bar = selections.join(',');
   }
 
   @action
-  handleFilterChange(event) {
-    let value = event.target.value;
-    let filters = this.filters;
+  handleFilterChange(value) {
+    let selections = this.selections;
 
-    if (filters.includes(value)) {
-      filters = filters.filter((v) => v !== value);
+    if (selections.includes(value)) {
+      selections = selections.filter((v) => v !== value);
     } else {
-      filters.push(value);
+      selections.push(value);
     }
 
-    this.filters = filters;
+    this.selections = selections;
   }
 }
