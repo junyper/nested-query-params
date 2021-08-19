@@ -8,14 +8,20 @@ const DEFAULTS = {
 
 export default class SearchController extends Controller {
   queryParams = ['q'];
-  q = DEFAULTS.q;
   defaults = DEFAULTS;
+  q = DEFAULTS.q;
 
   @service router;
 
+  reset(isExiting) {
+    if (isExiting) {
+      this.router.replaceWith({ queryParams: { q: DEFAULTS.q } });
+    }
+  }
+
   @action
   handleSearch(q) {
-    this.router.replaceWith(this.router.currentRouteName, {
+    this.router.replaceWith({
       queryParams: {
         q,
       },
