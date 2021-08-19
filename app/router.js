@@ -8,7 +8,6 @@ export default class Router extends EmberRouter {
 
 Router.map(function () {
   this.route('search', { path: '/' }, function () {
-    this.route('foo');
-    this.route('bar');
+    this.route('filter', { path: '/:type' });
   });
 });

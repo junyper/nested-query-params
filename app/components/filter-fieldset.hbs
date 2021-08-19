@@ -1,16 +1,7 @@
 {{! ember-template=;omt}}
 <fieldset>
   <legend>
-    Filters
-
-    <LinkTo
-      title="clear"
-      aria-label="clear filters"
-      @route={{route-name}}
-      @query={{@defaults}}
-    >
-      ×
-    </LinkTo>
+    {{@label}}
   </legend>
   {{#each @options as |option|}}
     <FilterCheckbox
@@ -18,7 +9,7 @@
       @value={{option.value}}
       @label={{option.label}}
       @checked={{if (array-contains @selections option.value) true null}}
-      @onChange={{fn this.handleChange option.value}}
+      @onChange={{fn this.handleChange @name option.value}}
     />
   {{/each}}
 </fieldset>

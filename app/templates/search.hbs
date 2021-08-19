@@ -7,16 +7,20 @@
     @onChange={{this.handleSearch}}
   />
   <LinkTo
-    @route={{route-name}}
+    @route="search.filter"
+    @models={{array this.type}}
     @query={{this.defaults}}
   >
     reset
   </LinkTo>
+  {{log this.defaults}}
 </form>
 
+<DebugFilters @query={{this.q}} @filters={{this.f}} />
+
 <nav aria-label="search result types">
-  <LinkTo @route="search.foo">Foo</LinkTo>
-  <LinkTo @route="search.bar">Bar</LinkTo>
+  <LinkTo @route="search.filter" @models={{array "foo"}}>Foo</LinkTo>
+  <LinkTo @route="search.filter" @models={{array "bar"}}>Bar</LinkTo>
 </nav>
 
 {{outlet}}

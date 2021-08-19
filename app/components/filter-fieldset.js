@@ -3,7 +3,7 @@ import { action } from '@ember/object';
 
 export default class FilterFieldsetComponent extends Component {
   @action
-  handleChange(value) {
+  handleChange(name, value) {
     let selections = [...(this.args.selections ?? [])];
 
     if (selections.includes(value)) {
@@ -12,6 +12,6 @@ export default class FilterFieldsetComponent extends Component {
       selections.push(value);
     }
 
-    this.args.onChange?.(selections);
+    this.args.onChange?.(name, selections);
   }
 }
