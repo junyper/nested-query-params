@@ -1,11 +1,16 @@
 import Route from '@ember/routing/route';
 
-export default class FilterRoute extends Route {
+export default class BarRoute extends Route {
   queryParams = {
     f: { refreshModel: true, replace: true },
   };
 
-  resetController(controller, isExiting, transition) {
+  setupController(controller) {
+    let { bar } = this.paramsFor(this.routeName);
+    controller.setup({ bar });
+  }
+
+  resetController(controller, _isExiting, transition) {
     // clear query params when the parent 'q' param changes
     let from = transition?.from?.queryParams?.q;
     let to = transition?.to?.queryParams?.q;

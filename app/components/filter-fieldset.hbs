@@ -1,3 +1,4 @@
+{{! ember-template=;omt}}
 <fieldset>
   <legend>
     Filters
@@ -17,7 +18,7 @@
       @value={{option.value}}
       @label={{option.label}}
       @checked={{if (array-contains @selections option.value) true null}}
-      @onChange={{fn @onChange option.value}}
+      @onChange={{fn this.handleChange option.value}}
     />
   {{/each}}
 </fieldset>

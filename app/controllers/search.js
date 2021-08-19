@@ -4,7 +4,6 @@ import { inject as service } from '@ember/service';
 
 const DEFAULTS = {
   q: '',
-  type: 'foo',
 };
 
 export default class SearchController extends Controller {
@@ -14,13 +13,9 @@ export default class SearchController extends Controller {
 
   @service router;
 
-  get type() {
-    return this.router.currentRoute.params.type ?? DEFAULTS.type;
-  }
-
   @action
   handleSearch(q) {
-    this.router.replaceWith(this.router.currentRouteName, this.type, {
+    this.router.replaceWith(this.router.currentRouteName, {
       queryParams: {
         q,
       },
