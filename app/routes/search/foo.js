@@ -2,7 +2,7 @@ import Route from '@ember/routing/route';
 
 export default class FooRoute extends Route {
   queryParams = {
-    f: { refreshModel: true, replace: true },
+    foo: { refreshModel: true, replace: true },
   };
 
   setupController(controller) {
@@ -15,7 +15,7 @@ export default class FooRoute extends Route {
     let from = transition?.from?.queryParams?.q;
     let to = transition?.to?.queryParams?.q;
     if (transition && from !== to) {
-      controller.reset();
+      this.replaceWith({ queryParams: { q: to, foo: null } });
     }
   }
 }
