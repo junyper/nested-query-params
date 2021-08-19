@@ -4,4 +4,8 @@ export default class SearchRoute extends Route {
   queryParams = {
     q: { refreshModel: true, replace: true },
   };
+
+  model({ q }) {
+    return q;
+  }
 }
