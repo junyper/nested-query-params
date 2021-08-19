@@ -23,20 +23,11 @@ export default class FooController extends Controller {
 
   @service router;
 
-  setup(model, transition) {
+  reset(isExiting, transition) {
     let from = transition?.from?.queryParams?.q ?? '';
     let to = transition?.to?.queryParams?.q ?? '';
 
-    console.log('setup foo', `'${from}'`, `'${to}'`, `'${model.q}'`);
-  }
-
-  reset(_isExiting, transition) {
-    let from = transition?.from?.queryParams?.q ?? '';
-    let to = transition?.to?.queryParams?.q ?? '';
-
-    console.log('reset foo', `'${from}'`, `'${to}'`);
-
-    if (transition && from !== to) {
+    if (isExiting || (transition && from !== to)) {
       this.router.replaceWith({
         queryParams: {
           q: to,

@@ -23,7 +23,7 @@ export default class SearchController extends Controller {
   handleSearch(q) {
     this.router.replaceWith({
       queryParams: {
-        q,
+        q: q ?? DEFAULTS.q,
       },
     });
   }

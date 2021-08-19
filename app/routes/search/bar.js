@@ -5,12 +5,9 @@ export default class BarRoute extends Route {
     bar: { refreshModel: true, replace: true },
   };
 
-  model({ q, bar }) {
+  model({ bar }) {
+    let { q } = this.paramsFor('search');
     return { q, bar };
-  }
-
-  setupController(controller, model, transition) {
-    controller.setup(model, transition);
   }
 
   resetController(controller, isExiting, transition) {

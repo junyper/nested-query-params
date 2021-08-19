@@ -5,12 +5,9 @@ export default class FooRoute extends Route {
     foo: { refreshModel: true, replace: true },
   };
 
-  model({ q, bar }) {
-    return { q, bar };
-  }
-
-  setupController(controller, model, transition) {
-    controller.setup(model, transition);
+  model({ foo }) {
+    let { q } = this.paramsFor('search');
+    return { q, foo };
   }
 
   resetController(controller, isExiting, transition) {
