@@ -1,0 +1,25 @@
+{{page-title "Bar"}}
+
+<h2>
+  Filters
+
+  <LinkTo
+    title="clear"
+    aria-label="clear bar filters"
+    @route={{route-name}}
+    @query={{this.defaults}}
+  >
+    ×
+  </LinkTo>
+</h2>
+
+{{#each this.filters as |filter| }}
+  <FilterFieldset
+    @label={{filter.label}}
+    @options={{filter.options}}
+    @selections={{filter.selections}}
+    @name={{filter.name}}
+    @onChange={{this.handleFilterChange}}
+  />
+{{/each}}
+

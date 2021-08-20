@@ -1,13 +1,12 @@
-{{page-title this.type}}
+{{page-title "Foo"}}
 
 <h2>
   Filters
 
   <LinkTo
     title="clear"
-    aria-label="clear filters"
-    @route="search.filter"
-    @models={{array this.type}}
+    aria-label="clear foo filters"
+    @route={{route-name}}
     @query={{this.defaults}}
   >
     ×
