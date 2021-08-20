@@ -91,18 +91,26 @@ function queryStringToObject(str) {
 export default class FilterController extends Controller {
   @service router;
 
-  @tracked q;
-  @tracked f;
   @tracked type;
 
-  setup({ q, f, type }) {
-    this.q = q;
-    this.f = f;
+  setup({ type }) {
     this.type = type;
   }
 
   reset() {
-    this.type = undefined;
+    this.type = null;
+  }
+
+  get params() {
+    return this.router.currentRoute.queryParams;
+  }
+
+  get q() {
+    return this.params?.q;
+  }
+
+  get f() {
+    return this.params?.f;
   }
 
   get filters() {

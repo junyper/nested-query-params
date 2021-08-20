@@ -6,7 +6,8 @@
   <LinkTo
     title="clear"
     aria-label="clear filters"
-    @route={{route-name}}
+    @route="search.filter"
+    @models={{array this.type}}
     @query={{this.defaults}}
   >
     ×

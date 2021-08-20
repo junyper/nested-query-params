@@ -6,14 +6,13 @@
     @value={{this.q}}
     @onChange={{this.handleSearch}}
   />
+
   <LinkTo
-    @route="search.filter"
-    @models={{array this.type}}
+    @route={{route-name}}
     @query={{this.defaults}}
   >
     reset
   </LinkTo>
-  {{log this.defaults}}
 </form>
 
 <DebugFilters @query={{this.q}} @filters={{this.f}} />

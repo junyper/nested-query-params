@@ -6,8 +6,8 @@ export default class FilterRoute extends Route {
     return { q, f, type };
   }
 
-  setupController(controller, { q, f, type }) {
-    controller.setup({ q, f, type });
+  setupController(controller, { type }) {
+    controller.setup({ type });
   }
 
   resetController(controller, isExiting) {
